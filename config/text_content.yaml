@@ -1,0 +1,172 @@
+# =============================================================================
+# HR ATTRITION DATA EXPERIENCE — EDITABLE TEXT CONTENT
+# All narrative text for the app lives here. Edit freely — no code changes needed.
+# =============================================================================
+
+# --- HEADER ---
+header:
+  title: "Understanding Employee Attrition"
+  subtitle: "A Data Science Walkthrough"
+  demo_banner: >
+    This is a demo of what's possible with open source tools and Posit Connect Cloud.
+    It enables you to rapidly publish not just dashboards or reports, but data experiences
+    that communicate data science results — providing a clear explanation of where these
+    numbers came from, for the purpose of self-service use by HR business partners and leadership.
+  built_with: "Built with Python · Streamlit · scikit-learn · SHAP · Posit Connect Cloud"
+
+# --- INTRODUCTION ---
+intro:
+  title: "Why Does Attrition Matter?"
+  body: >
+    Losing a high-performing employee is far more expensive than most organizations realize.
+    Beyond the visible costs of recruiting and onboarding a replacement, there is a longer,
+    quieter cost: the time it takes for a new hire to reach the productivity level of the
+    person they replaced. Research consistently places the total cost of replacing an employee
+    at 50–200% of their annual salary, depending on role complexity and seniority.
+  pull_quote: >
+    An organization losing 200 high-performing employees per year faces an estimated
+    $15 million in lost productivity — before a single recruiting fee is paid.
+  body_2: >
+    This walkthrough explains the economic model behind that number, then shows how
+    predictive data science can help HR identify at-risk employees before they resign —
+    shifting the conversation from reactive to proactive talent management.
+
+# --- SECTION 1: ECONOMIC VALUE ---
+section1:
+  title: "1. How Employees Create Economic Value"
+  subtitle: "The growth curve"
+  body: >
+    Every employee follows a value curve. When they join, the organization is investing
+    more than it receives — covering hiring costs, onboarding time, training, and the
+    productivity ramp-up period. Over time, as the employee grows into their role,
+    the value they generate begins to exceed the cost of employing them.
+  formula_note: >
+    EV(t) = Value(t) − Cost(t). Economic value at any point in time is simply
+    the cumulative value the employee has produced, minus the cumulative cost
+    of employing them. Early in tenure, this number is negative. Over time, it becomes
+    increasingly positive.
+  interaction_hint: "Use the slider to move along an employee's tenure and see how their economic value changes."
+
+# --- SECTION 2: INVESTMENT vs RETURN ---
+section2:
+  title: "2. The Investment Zone and the Return Zone"
+  subtitle: "Where the organization stands at any given moment"
+  body: >
+    We can divide an employee's career into two distinct phases. The Investment Zone is
+    the period before break-even — where costs exceed value. This includes everything
+    spent to attract, hire, and develop the employee. The Return Zone is everything
+    after break-even — where the organization is receiving a positive return on that
+    initial investment.
+  body_2: >
+    The break-even point varies significantly by role. A complex technical or leadership
+    role may take 12–18 months to reach break-even. Understanding where your employees
+    sit on this curve is the foundation of a data-driven retention strategy.
+  interaction_hint: "Adjust the break-even point and onboarding cost to see how they shift the zones."
+
+# --- SECTION 3: THE QUIT EVENT ---
+section3:
+  title: "3. What Happens When an Employee Leaves"
+  subtitle: "The disruption reset"
+  body: >
+    When an employee resigns, the value curve doesn't just pause — it resets. The
+    organization loses everything accumulated in the Return Zone and immediately
+    re-enters an Investment Zone with their replacement. The earlier the resignation
+    occurs in the employee's tenure, the more damaging the economic impact.
+  body_2: >
+    This is the mechanism behind the cost of attrition. It is not simply a recruitment
+    fee — it is the loss of all accumulated value, plus the cost of starting the
+    investment cycle again from zero with a new hire.
+  interaction_hint: "Drag the slider to see what happens to total economic value when an employee leaves at different points in their tenure."
+
+# --- SECTION 4: LOST PRODUCTIVITY + TIME ---
+section4:
+  title: "4. Quantifying the Loss"
+  subtitle: "Lost time and lost productivity"
+  body: >
+    The cost of attrition can be broken into two measurable dimensions: lost time
+    (how long it takes to recruit and onboard a replacement) and lost productivity
+    (how much output is reduced during that period, including the drag on the team
+    covering the vacancy). Together, these define the total economic damage of a
+    single attrition event.
+  body_2: >
+    Use the inputs below to estimate the cost of an attrition event for a specific
+    role. The result is a direct dollar figure your leadership team can act on —
+    and the starting point for understanding how much it's worth investing in retention.
+  interaction_hint: "Enter a salary and adjust the sliders to calculate the estimated cost of losing this employee."
+
+# --- BRIDGE SECTION ---
+bridge:
+  title: "From Cost Model to Prediction Model"
+  subtitle: "Can we identify who is at risk — before they leave?"
+  body: >
+    The four charts above establish why attrition is expensive. The natural next
+    question is: can we predict it? The answer is yes — with the right data and the
+    right modeling approach.
+  body_2: >
+    The model behind this tool was trained on the IBM Watson HR Employee Attrition
+    dataset — a widely used benchmark dataset in people analytics containing 1,470
+    employee records and 35 features spanning demographics, compensation, satisfaction
+    scores, career history, and work conditions.
+  body_3: >
+    Using a Random Forest classifier, we identified the 10 features most predictive
+    of voluntary attrition. The model achieves approximately 86% accuracy on held-out
+    data. More importantly, it produces individual-level predictions — not just
+    aggregate rates — along with a clear explanation of which factors are driving
+    each employee's risk score.
+
+# --- SECTION 5: PREDICTION PANEL ---
+section5:
+  title: "5. Employee Risk Assessment"
+  subtitle: "Explore individual predictions and what's driving them"
+  body: >
+    Select an employee profile from the dropdown below to see their attrition risk
+    prediction, the probability score, and the specific features contributing to
+    that assessment. Each bar in the chart shows how strongly a given feature is
+    pushing the prediction toward higher or lower risk.
+  manual_entry_label: "Enter your own employee data"
+  manual_entry_hint: >
+    Toggle the switch below to enter custom values and generate a prediction
+    for a hypothetical employee profile.
+  risk_high_label: "Elevated Risk"
+  risk_low_label: "Low Risk"
+
+# --- SECTION 6: METHODOLOGY ---
+section6:
+  title: "6. How the Model Works"
+  subtitle: "The math behind the predictions, without the jargon"
+  body: >
+    The prediction model uses a technique called Random Forest — an approach that
+    builds hundreds of independent decision trees, each looking at a slightly
+    different subset of the data, and then combines their answers by majority vote.
+    Think of it like convening a panel of 300 independent HR analysts, each with
+    partial information, and taking the consensus view.
+  body_2: >
+    Each tree asks a series of yes/no questions about an employee's profile: Has
+    this person worked more than two years without a promotion? Are they below the
+    median salary for their band? Have they worked at more than three companies?
+    The answers cascade through the tree until it reaches a prediction of Stay or Leave.
+    Aggregating across 300 trees produces both a final prediction and a confidence
+    score — the percentages you see in the risk panel above.
+  body_3: >
+    The feature contribution chart uses a technique called SHAP (SHapley Additive
+    exPlanations). SHAP calculates, for each feature, how much it increased or
+    decreased the predicted probability of attrition relative to the average
+    employee. A long bar pointing left means that feature is strongly associated
+    with higher attrition risk for this individual. A bar pointing right means
+    it is a stabilizing factor.
+  accuracy_note: >
+    Model accuracy: ~86% on held-out test data. Precision: 74%. Recall: 61%.
+    This model is a demonstration tool — it should be used to inform conversations,
+    not replace them. All predictions should be validated with direct manager insight.
+  repo_note: >
+    The full source code for this application — including model training, feature
+    engineering, and deployment configuration — is available in the linked GitHub
+    repository.
+
+# --- FOOTER ---
+footer:
+  built_with: "Built with Streamlit · scikit-learn · SHAP · Plotly"
+  deployed_on: "Deployed on Posit Connect Cloud"
+  dataset_credit: "Dataset: IBM Watson HR Analytics Employee Attrition (public domain)"
+  repo_label: "View source on GitHub"
+  repo_url: "https://github.com/your-org/hr-attrition-app"
